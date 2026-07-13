@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Patrick Hand', cursive;
+    font-family: 'Patrick Hand', 'Comic Sans MS', cursive;
     background: #f4e8d8;
     background-image:
         repeating-linear-gradient(0deg, transparent, transparent 29px, #d4c4b0 30px),
@@ -32,7 +32,7 @@ body {
 }
 
 .section-title {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 4em;
     font-weight: 700;
     color: #8b4513;
@@ -174,7 +174,7 @@ body {
 }
 
 .hero-name {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 3.5em;
     font-weight: 700;
     color: #2c2418;
@@ -217,7 +217,7 @@ body {
     font-size: 1.5em;
     color: #5a4a3a;
     margin-bottom: 50px;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
 }
 
 .about-photos {
@@ -291,7 +291,7 @@ body {
     display: block;
     text-align: center;
     margin-top: 10px;
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 1.3em;
     color: #8b4513;
 }
@@ -322,7 +322,7 @@ body {
 }
 
 .about-block h3 {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 2.5em;
     color: #8b4513;
     margin-bottom: 20px;
@@ -373,7 +373,7 @@ body {
     display: block;
     font-size: 2.5em;
     font-weight: 700;
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
 }
 
 .it-path-section {
@@ -479,7 +479,7 @@ body {
     font-weight: 700;
     transform: rotate(15deg);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 1.3em;
     border: 2px solid #2c2418;
 }
@@ -549,7 +549,7 @@ body {
 }
 
 .it-block h3 {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 2.5em;
     color: #8b4513;
     margin-bottom: 20px;
@@ -632,7 +632,7 @@ body {
 }
 
 .reviews-container h4 {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 2em;
     margin-bottom: 25px;
     color: #8b4513;
@@ -699,7 +699,7 @@ body {
     font-weight: 700;
     color: #8b4513;
     text-align: right;
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 1.3em;
 }
 
@@ -778,7 +778,7 @@ body {
 
 .project-right-top h3,
 .project-right-content h3 {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 2.5em;
     color: #2c2418;
     margin-bottom: 25px;
@@ -818,7 +818,7 @@ body {
 }
 
 .project-description h4 {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 1.8em;
     margin-bottom: 12px;
     color: #2c2418;
@@ -968,7 +968,7 @@ body {
 }
 
 .personality-block h3 {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 2.5em;
     color: #8b4513;
     margin-bottom: 20px;
@@ -1071,7 +1071,7 @@ body {
 }
 
 .song-card blockquote {
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
     font-size: 1.3em;
     line-height: 2;
     margin-bottom: 15px;
@@ -1107,7 +1107,7 @@ body {
 }
 
 .entertainment-block h3 {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 2.5em;
     color: #8b4513;
     margin-bottom: 20px;
@@ -1279,7 +1279,7 @@ body {
 }
 
 .achievement-category h3 {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 2em;
     color: #8b4513;
     margin-bottom: 30px;
@@ -1484,7 +1484,7 @@ body {
 }
 
 .final-quote blockquote {
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
     font-size: 1.8em;
     color: #2c2418;
     margin-bottom: 15px;
@@ -1504,13 +1504,13 @@ body {
 }
 
 .footer-thanks {
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
     font-size: 1.4em;
     margin-bottom: 10px;
 }
 
 .footer-year {
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 1.2em;
     opacity: 0.7;
 }
@@ -1627,7 +1627,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 1.5em;
     font-weight: 700;
     color: #8b4513;
@@ -1741,7 +1741,7 @@ body {
 }
 
 .rusty-message {
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
     font-size: 2.5em;
     margin-bottom: 20px;
     color: #e0e0e0;
@@ -1759,7 +1759,7 @@ body {
     border: 3px solid #667eea;
     color: white;
     padding: 15px 40px;
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
     font-size: 1.3em;
     cursor: pointer;
     transition: all 0.3s ease;
