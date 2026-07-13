@@ -5,37 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Евгений Мыльников | Портфолио</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/photos/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Indie+Flower&family=Patrick+Hand&family=Roboto+Mono:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     <section class="section hero-section" id="hero">
-        <div class="hero-card">
-            <div class="hero-photo-wrapper">
-                <div class="photo-frame">
-                    <img src="images/photos/hero.jpg" alt="Евгений Мыльников" class="hero-photo zoomable-img">
+        <div data-aos="zoom-in-up">
+            <div class="hero-card">
+                <div class="hero-photo-wrapper">
+                    <div class="photo-frame">
+                        <img src="images/photos/hero.jpg" alt="Евгений Мыльников" class="hero-photo zoomable-img">
+                    </div>
                 </div>
-            </div>
-            <h1 class="hero-name">Евгений Мыльников</h1>
-            <div class="hero-info">
-                <p class="hero-info-item">📍 Калининград, Россия</p>
-                <p class="hero-info-item">🎂 31.08.2008</p>
+                <h1 class="hero-name">Евгений Мыльников</h1>
+                <div class="hero-info">
+                    <p class="hero-info-item">📍 Калининград, Россия</p>
+                    <p class="hero-info-item">🎂 31.08.2008</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="section about-section" id="about">
         <div class="container">
-            <div class="about-intro">
+            <div class="about-intro" data-aos="fade-down">
                 <p>Привет!👋 Меня зовут Евгений, здесь вы познакомитесь со мной поближе. Погнали🚀</p>
             </div>
 
-            <div class="about-photos">
+            <div class="about-photos" data-aos="flip-up">
                 <div class="scattered-photo photo-1">
                     <img src="images/photos/class.jpg" alt="11 «Б» класс" class="zoomable-img">
                     <span class="photo-caption">Последний звонок.<br>11 «Б» класс</span>
@@ -50,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="about-blocks">
+            <div class="about-blocks" data-aos="flip-down">
                 <div class="about-block school-block">
                     <h3>🏫 Школа</h3>
                     <p>Я живу в Калининграде. Моя школьная жизнь прошла в лицее №49. Я окончил 11 классов с золотой
@@ -104,7 +105,7 @@
             <h2 class="section-title">Мой путь в IT</h2>
             <div class="title-line"></div>
 
-            <div class="it-path-grid">
+            <div class="it-path-grid" data-aos="zoom-out-down">
                 <div class="it-photo-block">
                     <div class="visual-photo">
                         <img src="images/photos/coding.jpg" alt="Я за компьютером" class="zoomable-img">
@@ -154,7 +155,7 @@
                 души.<br>Ниже я рассказал о 4 своих главных проектах, которыми я горжусь больше всего. Эти проекты
                 получили высший балл на защитах💯</p>
 
-            <div class="project-showcase project-1">
+            <div class="project-showcase project-1" data-aos="zoom-in-right">
                 <div class="project-left-images">
                     <div class="project-img-wrapper">
                         <img src="images/projects/turnstile/main.jpg" alt="Турникет" class="zoomable-img">
@@ -193,7 +194,7 @@
                 </div>
             </div>
 
-            <div class="project-showcase project-2">
+            <div class="project-showcase project-2" data-aos="zoom-in-left">
                 <div class="project-left-top">
                     <div class="project-badge">📊 Индивидуальный проект в Яндекс Лицее (PyQT)</div>
                     <h3>MarkMath - персональный помощник успеваемости</h3>
@@ -230,7 +231,7 @@
                 </div>
             </div>
 
-            <div class="project-showcase project-3">
+            <div class="project-showcase project-3" data-aos="zoom-in-right">
                 <div class="project-left-images">
                     <div class="project-img-wrapper">
                         <img src="images/projects/spacedrift/main.jpg" alt="Space Drift" class="zoomable-img">
@@ -315,7 +316,7 @@
                 </div>
             </div>
 
-            <div class="project-showcase project-4">
+            <div class="project-showcase project-4" data-aos="zoom-in-left">
                 <div class="project-left-top">
                     <div class="project-badge">📚 Командный проект в Яндекс Лицее (WebServer+API)</div>
                     <h3>Readify - платформа для управления библиотекой</h3>
@@ -357,7 +358,7 @@
             <h2 class="section-title">Технический арсенал</h2>
             <div class="title-line"></div>
 
-            <div class="tech-content">
+            <div class="tech-content" data-aos="fade-up-right">
                 <div class="tech-list">
                     <div class="tech-item">
                         <i class="fab fa-python"></i>
@@ -397,7 +398,7 @@
             <h2 class="section-title">Личность: что делает меня мной</h2>
             <div class="title-line"></div>
 
-            <div class="personality-block friends-block">
+            <div class="personality-block friends-block" data-aos="flip-right">
                 <h3>👥 Друзья</h3>
                 <p>Когда я закрываю IDE, я не перестаю быть собой. Я очень ценю своё свободное время с друзьями. Даже
                     простая переписка способна сделать меня по-настоящему счастливым. Я обожаю общаться с людьми, с
@@ -417,7 +418,7 @@
                 </div>
             </div>
 
-            <div class="personality-block inspiration-block">
+            <div class="personality-block inspiration-block" data-aos="flip-left">
                 <h3>✨ Вдохновение</h3>
                 <p>Моё главное вдохновение - это музыка, а именно творчество группы <strong>Lumen</strong>✨ В их треках
                     есть та самая внутренняя сила и мотивация, которая показывает, как нужно действовать, когда
@@ -441,7 +442,7 @@
                             <p>«Пой, и танцуй, и неси тепло.<br>
                                 Как Прометей, всем смертям назло»</p>
                         </blockquote>
-                        <p class="song-name"><strong>«Край»</strong></p>
+                        <p class="song-name"><strong>«Пластилин»</strong></p>
                     </div>
                 </div>
             </div>
@@ -453,7 +454,7 @@
             <h2 class="section-title">Развлечения</h2>
             <div class="title-line"></div>
 
-            <div class="entertainment-block movies-block">
+            <div class="entertainment-block movies-block" data-aos="zoom-out">
                 <h3>🎬 Фильмы</h3>
                 <p>Свободное время я люблю посвящать просмотру фильмов. Очень нравятся хорроры и триллеры, люблю такое👻
                     Но и комедии тоже смотрю, посмеяться я всегда люблю😁 Вот несколько моих самых любимых фильмов и
@@ -472,7 +473,7 @@
                 </div>
             </div>
 
-            <div class="entertainment-block games-block">
+            <div class="entertainment-block games-block" data-aos="zoom-in">
                 <h3>🎮 Игры</h3>
                 <p>Я не назову себя заядлым геймером, но игры тоже занимают важное место в моей жизни. Интересно, что
                     фильмы-боевики я не очень люблю, а вот игры-боевики - пожалуйста. Видимо, мне важен
@@ -497,14 +498,16 @@
                             тренируют внимательность и создают жутковатую атмосферу😈 <strong>Phasmophobia</strong> и
                             <strong>Lethal Company</strong> - отличные кооперативные хорроры, в которые весело играть с
                             друзьями. Недавно друг познакомил меня с Lethal Company - мы с ним вместе играли, весело и
-                            круто.</p>
+                            круто.
+                        </p>
                     </div>
 
                     <div class="game-item">
                         <img src="images/games/atomic_heart.jpg" alt="Atomic Heart" class="game-poster zoomable-img">
                         <p>А если хочется масштабного сюжета и атмосферы, я включаю <strong>Cyberpunk 2077</strong>,
                             <strong>Atomic Heart</strong> или <strong>Resident Evil 4</strong>💥 В них мне нравится
-                            именно погружение в другой мир и возможность влиять на историю.</p>
+                            именно погружение в другой мир и возможность влиять на историю.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -517,7 +520,7 @@
             <div class="title-line"></div>
             <p class="achievements-intro">Мое портфолио постоянно пополняется. На данный момент у меня есть:</p>
 
-            <div class="achievements-list">
+            <div class="achievements-list" data-aos="fade-left">
                 <div class="achievement-category">
                     <h3>🎓 Сертификаты за обучение C++ в Университете Синергия</h3>
                     <div class="diplomas-grid">
@@ -590,7 +593,7 @@
             <h2 class="section-title light">Связь со мной</h2>
             <div class="title-line"></div>
 
-            <div class="contacts-grid">
+            <div class="contacts-grid" data-aos="fade-right">
                 <a href="https://t.me/eugenius_mylnikoff" target="_blank" class="contact-card contact-telegram">
                     <div class="contact-icon"><i class="fab fa-telegram-plane"></i></div>
                     <div class="contact-info">
@@ -621,15 +624,17 @@
                 </a>
             </div>
 
-            <div class="final-quote">
-                <blockquote>
-                    <p>«Один в поле начни, а затем другим вспыхнет звезда перемен»</p>
-                    <cite><strong>Lumen</strong> - <strong>«Один в поле»</strong></cite>
-                </blockquote>
+            <div data-aos="zoom-in-left">
+                <div class="final-quote">
+                    <blockquote>
+                        <p>«Один в поле начни, а затем другим вспыхнет звезда перемен»</p>
+                        <cite><strong>Lumen</strong> - <strong>«Один в поле»</strong></cite>
+                    </blockquote>
+                </div>
             </div>
 
             <div class="footer-end">
-                <p class="footer-thanks">Спасибо за уделённое время, надеюсь, было интересно</p>
+                <p class="footer-thanks">Спасибо за уделённое время, надеюсь, было интересно!</p>
                 <p class="footer-year">2026</p>
             </div>
         </div>
@@ -678,7 +683,8 @@
         <img class="modal-img-content" id="modalImg">
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
