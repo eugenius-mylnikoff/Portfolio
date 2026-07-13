@@ -1,84 +1,3 @@
-@font-face {
-    font-family: 'Caveat';
-    src: url('fonts/Caveat-Regular.woff2') format('woff2'),
-        url('fonts/Caveat-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Caveat';
-    src: url('fonts/Caveat-Medium.woff2') format('woff2'),
-        url('fonts/Caveat-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Caveat';
-    src: url('fonts/Caveat-SemiBold.woff2') format('woff2'),
-        url('fonts/Caveat-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Caveat';
-    src: url('fonts/Caveat-Bold.woff2') format('woff2'),
-        url('fonts/Caveat-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Indie Flower';
-    src: url('fonts/IndieFlower-Regular.woff2') format('woff2'),
-        url('fonts/IndieFlower-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Patrick Hand';
-    src: url('fonts/PatrickHand-Regular.woff2') format('woff2'),
-        url('fonts/PatrickHand-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Roboto Mono';
-    src: url('fonts/RobotoMono-Light.woff2') format('woff2'),
-        url('fonts/RobotoMono-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Roboto Mono';
-    src: url('fonts/RobotoMono-Regular.woff2') format('woff2'),
-        url('fonts/RobotoMono-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Roboto Mono';
-    src: url('fonts/RobotoMono-Medium.woff2') format('woff2'),
-        url('fonts/RobotoMono-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -95,7 +14,7 @@ body {
     color: #2c2418;
     line-height: 1.8;
     overflow-x: hidden;
-    font-size: 16px;
+    font-size: 18px;
     cursor: none;
 }
 
@@ -114,7 +33,7 @@ body {
 
 .section-title {
     font-family: 'Caveat', cursive;
-    font-size: 3em;
+    font-size: 4em;
     font-weight: 700;
     color: #8b4513;
     margin-bottom: 30px;
@@ -256,13 +175,12 @@ body {
 
 .hero-name {
     font-family: 'Caveat', cursive;
-    font-size: 2.6em;
+    font-size: 3.5em;
     font-weight: 700;
     color: #2c2418;
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
-    white-space: nowrap;
 }
 
 .hero-name::after {
@@ -285,7 +203,7 @@ body {
 }
 
 .hero-info-item {
-    font-size: 1.1em;
+    font-size: 1.3em;
     color: #5a4a3a;
     font-weight: 600;
 }
@@ -296,7 +214,7 @@ body {
 
 .about-intro {
     text-align: center;
-    font-size: 1.25em;
+    font-size: 1.5em;
     color: #5a4a3a;
     margin-bottom: 50px;
     font-family: 'Indie Flower', cursive;
@@ -405,7 +323,7 @@ body {
 
 .about-block h3 {
     font-family: 'Caveat', cursive;
-    font-size: 2em;
+    font-size: 2.5em;
     color: #8b4513;
     margin-bottom: 20px;
 }
@@ -562,7 +480,7 @@ body {
     transform: rotate(15deg);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     font-family: 'Caveat', cursive;
-    font-size: 1.1em;
+    font-size: 1.3em;
     border: 2px solid #2c2418;
 }
 
@@ -632,7 +550,7 @@ body {
 
 .it-block h3 {
     font-family: 'Caveat', cursive;
-    font-size: 2em;
+    font-size: 2.5em;
     color: #8b4513;
     margin-bottom: 20px;
 }
@@ -649,7 +567,7 @@ body {
 
 .projects-intro {
     text-align: center;
-    font-size: 1.15em;
+    font-size: 1.3em;
     color: #5a4a3a;
     margin-bottom: 60px;
     line-height: 2;
@@ -861,7 +779,7 @@ body {
 .project-right-top h3,
 .project-right-content h3 {
     font-family: 'Caveat', cursive;
-    font-size: 2em;
+    font-size: 2.5em;
     color: #2c2418;
     margin-bottom: 25px;
     line-height: 1.3;
@@ -901,7 +819,7 @@ body {
 
 .project-description h4 {
     font-family: 'Caveat', cursive;
-    font-size: 1.5em;
+    font-size: 1.8em;
     margin-bottom: 12px;
     color: #2c2418;
 }
@@ -1051,7 +969,7 @@ body {
 
 .personality-block h3 {
     font-family: 'Caveat', cursive;
-    font-size: 2em;
+    font-size: 2.5em;
     color: #8b4513;
     margin-bottom: 20px;
 }
@@ -1154,7 +1072,7 @@ body {
 
 .song-card blockquote {
     font-family: 'Indie Flower', cursive;
-    font-size: 1.15em;
+    font-size: 1.3em;
     line-height: 2;
     margin-bottom: 15px;
     font-style: italic;
@@ -1190,7 +1108,7 @@ body {
 
 .entertainment-block h3 {
     font-family: 'Caveat', cursive;
-    font-size: 2em;
+    font-size: 2.5em;
     color: #8b4513;
     margin-bottom: 20px;
 }
@@ -1335,7 +1253,7 @@ body {
 
 .achievements-intro {
     text-align: center;
-    font-size: 1.15em;
+    font-size: 1.3em;
     color: #5a4a3a;
     margin-bottom: 50px;
 }
@@ -1362,7 +1280,7 @@ body {
 
 .achievement-category h3 {
     font-family: 'Caveat', cursive;
-    font-size: 1.7em;
+    font-size: 2em;
     color: #8b4513;
     margin-bottom: 30px;
     text-align: center;
@@ -1567,7 +1485,7 @@ body {
 
 .final-quote blockquote {
     font-family: 'Indie Flower', cursive;
-    font-size: 1.4em;
+    font-size: 1.8em;
     color: #2c2418;
     margin-bottom: 15px;
     font-style: italic;
@@ -1575,7 +1493,7 @@ body {
 
 .final-quote cite {
     font-family: 'Caveat', cursive;
-    font-size: 1.1em;
+    font-size: 1.3em;
     color: #8b4513;
 }
 
@@ -1587,7 +1505,7 @@ body {
 
 .footer-thanks {
     font-family: 'Indie Flower', cursive;
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin-bottom: 10px;
 }
 
@@ -1824,7 +1742,7 @@ body {
 
 .rusty-message {
     font-family: 'Indie Flower', cursive;
-    font-size: 2em;
+    font-size: 2.5em;
     margin-bottom: 20px;
     color: #e0e0e0;
     font-style: italic;
@@ -1961,11 +1879,11 @@ body {
     }
 
     .section-title {
-        font-size: 2.4em;
+        font-size: 3em;
     }
 
     .hero-name {
-        font-size: 2.2em;
+        font-size: 2.8em;
     }
 }
 
@@ -1975,11 +1893,11 @@ body {
     }
 
     .hero-name {
-        font-size: 1.8em;
+        font-size: 2.2em;
     }
 
     .section-title {
-        font-size: 1.9em;
+        font-size: 2.2em;
     }
 
     .project-showcase {
