@@ -11,7 +11,7 @@ body {
 }
 
 body {
-    font-family: 'Patrick Hand', 'Comic Sans MS', cursive;
+    font-family: 'Comic Sans MS', cursive;
     background: #f4e8d8;
     background-image:
         repeating-linear-gradient(0deg, transparent, transparent 29px, #d4c4b0 30px),
@@ -223,7 +223,7 @@ body {
     font-size: 1.5em;
     color: #5a4a3a;
     margin-bottom: 50px;
-    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
+    font-family: 'Comic Sans MS', cursive;
 }
 
 .about-photos {
@@ -1077,7 +1077,7 @@ body {
 }
 
 .song-card blockquote {
-    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 1.3em;
     line-height: 2;
     margin-bottom: 15px;
@@ -1262,7 +1262,7 @@ body {
     font-size: 1.25em;
     color: #5a4a3a;
     margin-bottom: 50px;
-    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
+    font-family: 'Comic Sans MS', cursive;
 }
 
 .hobbies-photos {
@@ -1529,7 +1529,7 @@ body {
 }
 
 .final-quote blockquote {
-    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 1.8em;
     color: #2c2418;
     margin-bottom: 15px;
@@ -1549,7 +1549,7 @@ body {
 }
 
 .footer-thanks {
-    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 1.4em;
     margin-bottom: 10px;
 }
@@ -1786,7 +1786,7 @@ body {
 }
 
 .rusty-message {
-    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 2.5em;
     margin-bottom: 20px;
     color: #e0e0e0;
@@ -1861,6 +1861,38 @@ body {
 .modal-close:hover {
     color: #fff;
     transform: scale(1.2);
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: #8b4513;
+    color: white;
+    border: 3px solid #2c2418;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    background: #ff6b6b;
+    transform: translateY(-5px);
 }
 
 @media (max-width: 968px) {
@@ -1970,5 +2002,15 @@ body {
     .game-poster {
         width: 100%;
         height: 200px;
+    }
+
+    .hobbies-section .movies-grid {
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
+    }
+
+    .hobbies-section .contact-card {
+        transform: none !important;
+        margin-bottom: 20px;
     }
 }
