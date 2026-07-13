@@ -1253,8 +1253,47 @@ body {
     color: #4a3f35;
 }
 
-.achievements-section {
+.hobbies-section {
     background: #faf6f0;
+}
+
+.hobbies-intro {
+    text-align: center;
+    font-size: 1.25em;
+    color: #5a4a3a;
+    margin-bottom: 50px;
+    font-family: 'Indie Flower', 'Comic Sans MS', cursive;
+}
+
+.hobbies-photos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.hobby-photo {
+    max-width: 300px;
+}
+
+.hobbies-block h3 {
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
+    font-size: 2em;
+    color: #8b4513;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.hobbies-block p {
+    font-size: 1.1em;
+    line-height: 2;
+    color: #4a3f35;
+    margin-bottom: 15px;
+}
+
+.achievements-section {
+    background: #f0e6d8;
 }
 
 .achievements-intro {
