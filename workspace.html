@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рабочее место Евгения | 3D</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&family=Patrick+Hand&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Patrick Hand', cursive;
+            background: #f4e8d8;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 29px, #d4c4b0 30px),
+                repeating-linear-gradient(90deg, transparent, transparent 29px, #d4c4b0 30px);
+            background-size: 30px 30px;
+            color: #2c2418;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .ui-layer {
+            position: fixed;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .header {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #8b4513;
+            text-shadow: 2px 2px 0px rgba(139, 69, 19, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 40px;
+            border: 3px solid #2c2418;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+            transform: rotate(-1deg);
+        }
+
+        .header p {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.2em;
+            color: #5a4a3a;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 8px 25px;
+            border: 2px solid #2c2418;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .controls-hint {
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border: 3px solid #2c2418;
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+            display: flex;
+            gap: 25px;
+            font-size: 1.05em;
+            color: #4a3f35;
+        }
+
+        .controls-hint span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .controls-hint i {
+            color: #4ecdc4;
+            font-size: 1.2em;
+        }
+
+        .tooltip {
+            position: fixed;
+            background: white;
+            padding: 15px 25px;
+            border: 3px solid #2c2418;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Caveat', cursive;
+            font-size: 1.3em;
+            color: #2c2418;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+            max-width: 280px;
+            transform: rotate(-1deg);
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 8px solid #2c2418;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 22px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 6px solid white;
+        }
+
+        .back-btn {
+            top: 20px;
+            left: 20px;
+            pointer-events: all;
+        }
+
+        .back-btn a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 12px 25px;
+            border: 3px solid #2c2418;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #8b4513;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2em;
+            font-weight: 700;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f4e8d8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5em;
+            color: #8b4513;
+            margin-bottom: 20px;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 10px;
+            background: #d4c4b0;
+            border: 2px solid #2c2418;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4ecdc4, #667eea);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+                padding: 10px 25px;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .controls-hint {
+                flex-direction: column;
+                gap: 10px;
+                font-size: 0.95em;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading" id="loading">
+        <h2> Создаём рабочее место...</h2>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+    </div>
+
+    <div class="ui-layer header">
+        <h1>Рабочее место Евгения</h1>
+        <p>🖥️ Здесь рождаются проекты и идеи</p>
+        <p>❗В РАЗРАБОТКЕ❗</p>
+    </div>
+
+    <div class="ui-layer back-btn">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> На главную</a>
+    </div>
+
+    <div class="ui-layer controls-hint">
+        <span><i class="fas fa-hand-pointer"></i> ЛКМ — вращение</span>
+        <span><i class="fas fa-search-plus"></i> Колёсико — зум</span>
+        <span><i class="fas fa-arrows-alt"></i> ПКМ — перемещение</span>
+        <span><i class="fas fa-mouse-pointer"></i> Наведи на объект</span>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <div id="canvas-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // Основные переменные
+        let scene, camera, renderer, controls;
+        let raycaster, mouse;
+        let tooltip;
+        let steamParticles = [];
+        let cubeGroup;
+        let bulb;
+        let interactableObjects = [];
+
+        // Инициализация сцены
+        function init() {
+            // Сцена
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf4e8d8);
+            scene.fog = new THREE.Fog(0xf4e8d8, 10, 50);
+
+            // Камера
+            camera = new THREE.PerspectiveCamera(
+                60,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                1000
+            );
+            camera.position.set(3, 2.5, 4);
+
+            // Рендерер
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Контролы
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.target.set(0, 0.5, 0);
+            controls.minDistance = 2;
+            controls.maxDistance = 10;
+
+            // Raycaster для интерактивности
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+            tooltip = document.getElementById('tooltip');
+
+            // Освещение
+            setupLighting();
+
+            // Создание объектов
+            createWorkspace();
+
+            // События
+            window.addEventListener('resize', onWindowResize);
+            window.addEventListener('mousemove', onMouseMove);
+
+            // Анимация
+            animate();
+        }
+
+        function setupLighting() {
+            // Ambient light
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            // Directional light (солнце)
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(5, 10, 7);
+            dirLight.castShadow = true;
+            dirLight.shadow.mapSize.width = 2048;
+            dirLight.shadow.mapSize.height = 2048;
+            dirLight.shadow.camera.near = 0.5;
+            dirLight.shadow.camera.far = 50;
+            dirLight.shadow.camera.left = -10;
+            dirLight.shadow.camera.right = 10;
+            dirLight.shadow.camera.top = 10;
+            dirLight.shadow.camera.bottom = -10;
+            scene.add(dirLight);
+
+            // Точечный свет (лампа)
+            const pointLight = new THREE.PointLight(0xffaa77, 0.5, 10);
+            pointLight.position.set(0, 2, 0);
+            scene.add(pointLight);
+        }
+
+        function createWorkspace() {
+            // Пол (плитка)
+            const floorGeometry = new THREE.PlaneGeometry(20, 20);
+            const floorMaterial = new THREE.MeshStandardMaterial({
+                color: 0xf5f5f5,
+                roughness: 0.8
+            });
+            const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+            floor.rotation.x = -Math.PI / 2;
+            floor.position.y = -0.01;
+            floor.receiveShadow = true;
+            scene.add(floor);
+
+            // Добавляем линии плитки
+            const tileLines = createTileLines();
+            scene.add(tileLines);
+
+            // Стол (L-образный, деревянный) - ИСПРАВЛЕНО
+            createDesk();
+
+            // iMac - ИСПРАВЛЕНО: стоит на столе
+            createIMac();
+
+            // Принтер Canon - ИСПРАВЛЕНО: стоит на столе слева
+            createPrinter();
+
+            // Пробковая доска - ИСПРАВЛЕНО: висит на стене
+            createCorkboard();
+
+            // Жёлтая штора - ИСПРАВЛЕНО
+            createCurtain();
+
+            // Белый пакет "ГРАНД МАКЕТ РОССИЯ" - ИСПРАВЛЕНО: на верхней полке
+            createWhiteBag();
+
+            // Деревянная лампа/конструкция - ИСПРАВЛЕНО: на верхней полке
+            createWoodenLamp();
+
+            // Чёрные сетчатые органайзеры - ИСПРАВЛЕНО
+            createMeshOrganizers();
+
+            // Клавиатура и мышь - ИСПРАВЛЕНО: на выдвижной полке
+            createKeyboardAndMouse();
+
+            // Резиновая уточка - ИСПРАВЛЕНО
+            createRubberDuck();
+
+            // Кактус - ИСПРАВЛЕНО
+            createCactus();
+
+            // Бумаги и документы - ИСПРАВЛЕНО
+            createPapers();
+
+            // Ручки и карандаши - ИСПРАВЛЕНО
+            createPens();
+
+            // Кубик Rusty Lake - ИСПРАВЛЕНО
+            createRustyCube();
+
+            // Кофейная чашка с паром - ИСПРАВЛЕНО
+            createCoffeeCup();
+        }
+
+        function createTileLines() {
+            const group = new THREE.Group();
+            const lineMaterial = new THREE.LineBasicMaterial({ color: 0xdddddd, linewidth: 2 });
+
+            // Создаём сетку плитки
+            for (let i = -10; i <= 10; i++) {
+                const points1 = [
+                    new THREE.Vector3(i, 0.001, -10),
+                    new THREE.Vector3(i, 0.001, 10)
+                ];
+                const points2 = [
+                    new THREE.Vector3(-10, 0.001, i),
+                    new THREE.Vector3(10, 0.001, i)
+                ];
+
+                const geometry1 = new THREE.BufferGeometry().setFromPoints(points1);
+                const geometry2 = new THREE.BufferGeometry().setFromPoints(points2);
+
+                group.add(new THREE.Line(geometry1, lineMaterial));
+                group.add(new THREE.Line(geometry2, lineMaterial));
+            }
+
+            return group;
+        }
+
+        function createDesk() {
+            const woodMaterial = new THREE.MeshStandardMaterial({
+                color: 0x8b6f47,
+                roughness: 0.7,
+                metalness: 0.1
+            });
+
+            // Основная поверхность стола (высота 0.75м)
+            const mainDesk = new THREE.Mesh(
+                new THREE.BoxGeometry(2.5, 0.05, 1.2),
+                woodMaterial
+            );
+            mainDesk.position.set(0, 0.75, 0);
+            mainDesk.castShadow = true;
+            mainDesk.receiveShadow = true;
+            mainDesk.userData = { name: 'Рабочий стол', description: 'Основное рабочее пространство' };
+            scene.add(mainDesk);
+            interactableObjects.push(mainDesk);
+
+            // Боковая часть (L-образная) - левая сторона
+            const sideDesk = new THREE.Mesh(
+                new THREE.BoxGeometry(1.2, 0.05, 1.5),
+                woodMaterial
+            );
+            sideDesk.position.set(-1.85, 0.75, -0.6);
+            sideDesk.castShadow = true;
+            sideDesk.receiveShadow = true;
+            scene.add(sideDesk);
+
+            // Ножки стола
+            const legPositions = [
+                [1.1, 0.375, 0.5],
+                [1.1, 0.375, -0.5],
+                [-1.1, 0.375, 0.5],
+                [-1.1, 0.375, -0.5],
+                [-2.45, 0.375, -1.35],
+                [-1.25, 0.375, -1.35]
+            ];
+
+            legPositions.forEach(pos => {
+                const leg = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.08, 0.75, 0.08),
+                    woodMaterial
+                );
+                leg.position.set(...pos);
+                leg.castShadow = true;
+                scene.add(leg);
+            });
+
+            // Выдвижной ящик для клавиатуры (ниже основной поверхности)
+            const keyboardTray = new THREE.Mesh(
+                new THREE.BoxGeometry(0.8, 0.03, 0.4),
+                woodMaterial
+            );
+            keyboardTray.position.set(0.6, 0.62, 0.5);
+            keyboardTray.castShadow = true;
+            scene.add(keyboardTray);
+
+            // Верхняя полка/надстройка (для лампы и пакета)
+            const upperShelf = new THREE.Mesh(
+                new THREE.BoxGeometry(1.5, 0.03, 0.6),
+                woodMaterial
+            );
+            upperShelf.position.set(-1.5, 1.55, -0.8);
+            upperShelf.castShadow = true;
+            scene.add(upperShelf);
+
+            // Боковые стенки надстройки
+            const shelfSide1 = new THREE.Mesh(
+                new THREE.BoxGeometry(0.03, 0.35, 0.6),
+                woodMaterial
+            );
+            shelfSide1.position.set(-2.25, 1.4, -0.8);
+            scene.add(shelfSide1);
+
+            const shelfSide2 = new THREE.Mesh(
+                new THREE.BoxGeometry(0.03, 0.35, 0.6),
+                woodMaterial
+            );
+            shelfSide2.position.set(-0.75, 1.4, -0.8);
+            scene.add(shelfSide2);
+        }
+
+        function createIMac() {
+            // Подставка iMac
+            const standMaterial = new THREE.MeshStandardMaterial({
+                color: 0xc0c0c0,
+                metalness: 0.8,
+                roughness: 0.2
+            });
+
+            const stand = new THREE.Mesh(
+                new THREE.BoxGeometry(0.25, 0.02, 0.15),
+                standMaterial
+            );
+            stand.position.set(0, 0.77, 0);
+            stand.castShadow = true;
+            scene.add(stand);
+
+            const standNeck = new THREE.Mesh(
+                new THREE.BoxGeometry(0.05, 0.15, 0.05),
+                standMaterial
+            );
+            standNeck.position.set(0, 0.85, 0);
+            standNeck.castShadow = true;
+            scene.add(standNeck);
+
+            // Экран iMac - ИСПРАВЛЕНО: стоит на столе
+            const screenMaterial = new THREE.MeshStandardMaterial({
+                color: 0x1a1a1a,
+                roughness: 0.3
+            });
+
+            const screenFrame = new THREE.Mesh(
+                new THREE.BoxGeometry(0.7, 0.5, 0.02),
+                screenMaterial
+            );
+            screenFrame.position.set(0, 1.05, 0);
+            screenFrame.rotation.x = -0.1;
+            screenFrame.castShadow = true;
+            screenFrame.userData = {
+                name: 'iMac',
+                description: 'Здесь пишется код и рождаются проекты 💻'
+            };
+            scene.add(screenFrame);
+            interactableObjects.push(screenFrame);
+
+            // Экран с кодом (эмиссивный материал)
+            const screenGeometry = new THREE.PlaneGeometry(0.65, 0.45);
+            const screenCanvas = createCodeScreenTexture();
+            const screenTexture = new THREE.CanvasTexture(screenCanvas);
+            const screenMat = new THREE.MeshBasicMaterial({
+                map: screenTexture,
+                side: THREE.DoubleSide
+            });
+            const screen = new THREE.Mesh(screenGeometry, screenMat);
+            screen.position.set(0, 1.05, 0.011);
+            screen.rotation.x = -0.1;
+            scene.add(screen);
+        }
+
+        function createCodeScreenTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 384;
+            const ctx = canvas.getContext('2d');
+
+            // Тёмный фон
+            ctx.fillStyle = '#1e1e1e';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Код (разноцветные строки)
+            const colors = ['#569cd6', '#ce9178', '#b5cea8', '#dcdcaa', '#c586c0', '#9cdcfe'];
+            ctx.font = '12px monospace';
+
+            for (let i = 0; i < 25; i++) {
+                const x = Math.random() * (canvas.width - 100);
+                const y = 20 + i * 15;
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                const line = ' '.repeat(Math.floor(Math.random() * 20)) +
+                    '// '.repeat(Math.floor(Math.random() * 3)) +
+                    'code'.repeat(Math.floor(Math.random() * 5 + 3));
+                ctx.fillText(line.substring(0, 60), x, y);
+            }
+
+            return canvas;
+        }
+
+        function createPrinter() {
+            const printerMaterial = new THREE.MeshStandardMaterial({
+                color: 0x2a2a2a,
+                roughness: 0.6
+            });
+
+            // Принтер - ИСПРАВЛЕНО: стоит на столе слева
+            const printer = new THREE.Mesh(
+                new THREE.BoxGeometry(0.45, 0.25, 0.35),
+                printerMaterial
+            );
+            printer.position.set(-1.0, 0.88, 0.3);
+            printer.castShadow = true;
+            printer.userData = {
+                name: 'Принтер Canon',
+                description: 'Для печати документов и фотографий 🖨️'
+            };
+            scene.add(printer);
+            interactableObjects.push(printer);
+
+            // Лоток для бумаги
+            const tray = new THREE.Mesh(
+                new THREE.BoxGeometry(0.35, 0.05, 0.25),
+                new THREE.MeshStandardMaterial({ color: 0x1a1a1a })
+            );
+            tray.position.set(-1.0, 0.76, 0.3);
+            scene.add(tray);
+
+            // Бумага в лотке
+            const paper = new THREE.Mesh(
+                new THREE.BoxGeometry(0.3, 0.03, 0.2),
+                new THREE.MeshStandardMaterial({ color: 0xffffff })
+            );
+            paper.position.set(-1.0, 0.78, 0.3);
+            scene.add(paper);
+        }
+
+        function createCorkboard() {
+            const boardGroup = new THREE.Group();
+
+            // Деревянная рамка
+            const frameMaterial = new THREE.MeshStandardMaterial({
+                color: 0x8b6f47,
+                roughness: 0.8
+            });
+
+            // Пробковая основа
+            const corkMaterial = new THREE.MeshStandardMaterial({
+                color: 0xc4a574,
+                roughness: 0.9
+            });
+
+            const cork = new THREE.Mesh(
+                new THREE.PlaneGeometry(1.2, 0.9),
+                corkMaterial
+            );
+            boardGroup.add(cork);
+
+            // Рамка
+            const frameTop = new THREE.Mesh(
+                new THREE.BoxGeometry(1.28, 0.05, 0.03),
+                frameMaterial
+            );
+            frameTop.position.y = 0.475;
+            boardGroup.add(frameTop);
+
+            const frameBottom = new THREE.Mesh(
+                new THREE.BoxGeometry(1.28, 0.05, 0.03),
+                frameMaterial
+            );
+            frameBottom.position.y = -0.475;
+            boardGroup.add(frameBottom);
+
+            const frameLeft = new THREE.Mesh(
+                new THREE.BoxGeometry(0.05, 0.9, 0.03),
+                frameMaterial
+            );
+            frameLeft.position.x = -0.615;
+            boardGroup.add(frameLeft);
+
+            const frameRight = new THREE.Mesh(
+                new THREE.BoxGeometry(0.05, 0.9, 0.03),
+                frameMaterial
+            );
+            frameRight.position.x = 0.615;
+            boardGroup.add(frameRight);
+
+            // Прикреплённые предметы (фото, заметки)
+            createBoardItems(boardGroup);
+
+            // ИСПРАВЛЕНО: висит на стене слева на правильной высоте
+            boardGroup.position.set(-2.5, 1.3, -0.5);
+            boardGroup.rotation.y = 0.3;
+            boardGroup.userData = {
+                name: 'Пробковая доска',
+                description: 'Здесь хранятся важные напоминания и фото 📌'
+            };
+            scene.add(boardGroup);
+            interactableObjects.push(cork);
+        }
+
+        function createBoardItems(boardGroup) {
+            // Фотографии и заметки
+            const items = [
+                { x: -0.4, y: 0.2, w: 0.25, h: 0.2, color: 0x87ceeb, type: 'photo' },
+                { x: 0.1, y: 0.25, w: 0.2, h: 0.15, color: 0xffff99, type: 'note' },
+                { x: -0.3, y: -0.2, w: 0.22, h: 0.18, color: 0xffb6c1, type: 'card' },
+                { x: 0.2, y: -0.15, w: 0.18, h: 0.22, color: 0x98fb98, type: 'note' },
+                { x: -0.1, y: 0.05, w: 0.15, h: 0.15, color: 0xdda0dd, type: 'photo' }
+            ];
+
+            items.forEach(item => {
+                const geometry = new THREE.PlaneGeometry(item.w, item.h);
+                const material = new THREE.MeshBasicMaterial({
+                    color: item.color,
+                    side: THREE.DoubleSide
+                });
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.set(item.x, item.y, 0.02);
+
+                // Кнопки-гвоздики
+                const pinGeometry = new THREE.SphereGeometry(0.02, 8, 8);
+                const pinMaterial = new THREE.MeshStandardMaterial({
+                    color: Math.random() > 0.5 ? 0xff0000 : 0x0000ff
+                });
+                const pin = new THREE.Mesh(pinGeometry, pinMaterial);
+                pin.position.set(item.x + item.w / 2 - 0.02, item.y + item.h / 2 - 0.02, 0.03);
+                boardGroup.add(pin);
+
+                boardGroup.add(mesh);
+            });
+        }
+
+        function createCurtain() {
+            const curtainMaterial = new THREE.MeshStandardMaterial({
+                color: 0xffd700,
+                roughness: 0.8,
+                side: THREE.DoubleSide
+            });
+
+            const curtain = new THREE.Mesh(
+                new THREE.PlaneGeometry(2, 2.5),
+                curtainMaterial
+            );
+            curtain.position.set(-2.8, 1.25, -1.5);
+            curtain.rotation.y = 0.2;
+            scene.add(curtain);
+
+            // Складки шторы
+            for (let i = 0; i < 10; i++) {
+                const fold = new THREE.Mesh(
+                    new THREE.PlaneGeometry(0.05, 2.5),
+                    new THREE.MeshStandardMaterial({
+                        color: 0xe6c200,
+                        side: THREE.DoubleSide
+                    })
+                );
+                fold.position.set(-2.8 + i * 0.2, 1.25, -1.45);
+                fold.rotation.y = 0.3;
+                scene.add(fold);
+            }
+        }
+
+        function createWhiteBag() {
+            const bagMaterial = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                roughness: 0.9
+            });
+
+            // ИСПРАВЛЕНО: пакет на верхней полке
+            const bag = new THREE.Mesh(
+                new THREE.BoxGeometry(0.3, 0.35, 0.15),
+                bagMaterial
+            );
+            bag.position.set(-1.5, 1.58, -0.8);
+            bag.rotation.z = -0.1;
+            bag.castShadow = true;
+            bag.userData = {
+                name: 'Пакет "ГРАНД МАКЕТ"',
+                description: 'Сувенирный пакет из музея 🛍️'
+            };
+            scene.add(bag);
+            interactableObjects.push(bag);
+
+            // Текст на пакете (упрощённо - красная полоса)
+            const textStripe = new THREE.Mesh(
+                new THREE.PlaneGeometry(0.28, 0.08),
+                new THREE.MeshBasicMaterial({ color: 0xdc143c })
+            );
+            textStripe.position.set(-1.5, 1.63, -0.72);
+            textStripe.rotation.z = -0.1;
+            scene.add(textStripe);
+        }
+
+        function createWoodenLamp() {
+            const woodMaterial = new THREE.MeshStandardMaterial({
+                color: 0xd4a574,
+                roughness: 0.7
+            });
+
+            const lampGroup = new THREE.Group();
+
+            // Основание
+            const base = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.08, 0.1, 0.03, 16),
+                woodMaterial
+            );
+            base.position.y = 0.015;
+            lampGroup.add(base);
+
+            // Стержень
+            const stem = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.015, 0.015, 0.4, 8),
+                woodMaterial
+            );
+            stem.position.y = 0.25;
+            stem.rotation.z = -0.3;
+            lampGroup.add(stem);
+
+            // Абажур (деревянный куб)
+            const shade = new THREE.Mesh(
+                new THREE.BoxGeometry(0.15, 0.15, 0.15),
+                woodMaterial
+            );
+            shade.position.set(0.12, 0.45, 0);
+            shade.rotation.z = -0.3;
+            lampGroup.add(shade);
+
+            // Лампочка
+            bulb = new THREE.Mesh(
+                new THREE.SphereGeometry(0.04, 16, 16),
+                new THREE.MeshStandardMaterial({
+                    color: 0xffffcc,
+                    emissive: 0xffffaa,
+                    emissiveIntensity: 1
+                })
+            );
+            bulb.position.set(0.12, 0.42, 0);
+            lampGroup.add(bulb);
+
+            // ИСПРАВЛЕНО: лампа на верхней полке
+            lampGroup.position.set(-1.3, 1.58, -0.8);
+            lampGroup.userData = {
+                name: 'Деревянная лампа',
+                description: 'Создаёт уютное освещение 💡'
+            };
+            scene.add(lampGroup);
+            interactableObjects.push(shade);
+        }
+
+        function createMeshOrganizers() {
+            const meshMaterial = new THREE.MeshStandardMaterial({
+                color: 0x2a2a2a,
+                roughness: 0.6,
+                metalness: 0.3
+            });
+
+            // Большой органайзер - ИСПРАВЛЕНО: на столе
+            const organizer1 = new THREE.Mesh(
+                new THREE.BoxGeometry(0.35, 0.15, 0.2),
+                meshMaterial
+            );
+            organizer1.position.set(0.8, 0.83, -0.3);
+            organizer1.castShadow = true;
+            organizer1.userData = {
+                name: 'Органайзер',
+                description: 'Хранит канцелярские принадлежности 📎'
+            };
+            scene.add(organizer1);
+            interactableObjects.push(organizer1);
+
+            // Малый органайзер - ИСПРАВЛЕНО: на верхней полке
+            const organizer2 = new THREE.Mesh(
+                new THREE.BoxGeometry(0.25, 0.12, 0.15),
+                meshMaterial
+            );
+            organizer2.position.set(-1.9, 1.58, -0.9);
+            organizer2.castShadow = true;
+            scene.add(organizer2);
+        }
+
+        function createKeyboardAndMouse() {
+            // Клавиатура (белая) - ИСПРАВЛЕНО: на выдвижной полке
+            const keyboardMaterial = new THREE.MeshStandardMaterial({
+                color: 0xf5f5f5,
+                roughness: 0.5
+            });
+
+            const keyboard = new THREE.Mesh(
+                new THREE.BoxGeometry(0.4, 0.02, 0.12),
+                keyboardMaterial
+            );
+            keyboard.position.set(0.6, 0.63, 0.5);
+            keyboard.castShadow = true;
+            keyboard.userData = {
+                name: 'Apple Magic Keyboard',
+                description: 'Беспроводная клавиатура ⌨️'
+            };
+            scene.add(keyboard);
+            interactableObjects.push(keyboard);
+
+            // Мышь (белая) - ИСПРАВЛЕНО: на выдвижной полке
+            const mouse = new THREE.Mesh(
+                new THREE.BoxGeometry(0.1, 0.04, 0.06),
+                keyboardMaterial
+            );
+            mouse.position.set(0.9, 0.82, 0.2);
+            mouse.rotation.y = -0.2;
+            mouse.castShadow = true;
+            mouse.userData = {
+                name: 'Apple Magic Mouse',
+                description: 'Беспроводная мышь 🖱️'
+            };
+            scene.add(mouse);
+            interactableObjects.push(mouse);
+
+            // Коврик для мыши
+            const mousepad = new THREE.Mesh(
+                new THREE.BoxGeometry(0.25, 0.01, 0.2),
+                new THREE.MeshStandardMaterial({ color: 0x2a2a2a })
+            );
+            mousepad.position.set(0.9, 0.805, 0.2);
+            scene.add(mousepad);
+        }
+
+        function createRubberDuck() {
+            const duckGroup = new THREE.Group();
+
+            // Тело утки
+            const bodyMaterial = new THREE.MeshStandardMaterial({
+                color: 0xffd700,
+                roughness: 0.4
+            });
+
+            const body = new THREE.Mesh(
+                new THREE.SphereGeometry(0.05, 16, 16),
+                bodyMaterial
+            );
+            body.scale.set(1, 0.8, 1.2);
+            duckGroup.add(body);
+
+            // Голова
+            const head = new THREE.Mesh(
+                new THREE.SphereGeometry(0.035, 16, 16),
+                bodyMaterial
+            );
+            head.position.set(0, 0.05, 0.04);
+            duckGroup.add(head);
+
+            // Клюв
+            const beak = new THREE.Mesh(
+                new THREE.ConeGeometry(0.015, 0.03, 8),
+                new THREE.MeshStandardMaterial({ color: 0xff8c00 })
+            );
+            beak.rotation.x = Math.PI / 2;
+            beak.position.set(0, 0.04, 0.075);
+            duckGroup.add(beak);
+
+            // ИСПРАВЛЕНО: уточка рядом с принтером на столе
+            duckGroup.position.set(-1.15, 0.81, 0.35);
+            duckGroup.userData = {
+                name: 'Резиновая уточка',
+                description: 'Талисман программиста '
+            };
+            scene.add(duckGroup);
+            interactableObjects.push(body);
+        }
+
+        function createCactus() {
+            const cactusGroup = new THREE.Group();
+
+            // Горшок
+            const pot = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.04, 0.05, 0.06, 8),
+                new THREE.MeshStandardMaterial({ color: 0x8b4513 })
+            );
+            pot.position.y = 0.03;
+            cactusGroup.add(pot);
+
+            // Кактус
+            const cactusMaterial = new THREE.MeshStandardMaterial({
+                color: 0x228b22,
+                roughness: 0.8
+            });
+
+            const stem = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.025, 0.03, 0.12, 8),
+                cactusMaterial
+            );
+            stem.position.y = 0.09;
+            cactusGroup.add(stem);
+
+            // Веточка
+            const arm = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.015, 0.02, 0.06, 8),
+                cactusMaterial
+            );
+            arm.rotation.z = Math.PI / 4;
+            arm.position.set(0.03, 0.12, 0);
+            cactusGroup.add(arm);
+
+            // ИСПРАВЛЕНО: кактус рядом с принтером на столе
+            cactusGroup.position.set(-1.05, 0.81, 0.45);
+            cactusGroup.userData = {
+                name: 'Кактус',
+                description: 'Неприхотливый зелёный друг 🌵'
+            };
+            scene.add(cactusGroup);
+            interactableObjects.push(pot);
+        }
+
+        function createPapers() {
+            const paperMaterial = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                roughness: 0.9
+            });
+
+            // Стопка бумаг на столе - ИСПРАВЛЕНО
+            const papers = new THREE.Mesh(
+                new THREE.BoxGeometry(0.25, 0.03, 0.2),
+                paperMaterial
+            );
+            papers.position.set(0.3, 0.77, -0.4);
+            papers.rotation.z = -0.1;
+            papers.castShadow = true;
+            papers.userData = {
+                name: 'Документы',
+                description: 'Рабочие бумаги и заметки 📄'
+            };
+            scene.add(papers);
+            interactableObjects.push(papers);
+
+            // Бумага на боковой полке - ИСПРАВЛЕНО
+            const papers2 = new THREE.Mesh(
+                new THREE.BoxGeometry(0.3, 0.05, 0.25),
+                paperMaterial
+            );
+            papers2.position.set(-1.85, 0.77, -0.6);
+            papers2.rotation.z = 0.05;
+            scene.add(papers2);
+        }
+
+        function createPens() {
+            const penColors = [0x0000ff, 0xff0000, 0x00ff00, 0x000000, 0xffa500];
+
+            // Ручки в органайзере - ИСПРАВЛЕНО
+            penColors.forEach((color, i) => {
+                const pen = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.005, 0.005, 0.12, 8),
+                    new THREE.MeshStandardMaterial({ color: color })
+                );
+                pen.position.set(
+                    0.78 + (Math.random() - 0.5) * 0.15,
+                    0.92,
+                    -0.3 + (Math.random() - 0.5) * 0.1
+                );
+                pen.rotation.z = (Math.random() - 0.5) * 0.3;
+                pen.rotation.x = (Math.random() - 0.5) * 0.2;
+                scene.add(pen);
+            });
+
+            // Ручки в держателе - ИСПРАВЛЕНО
+            const penHolder = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.06, 0.06, 0.1, 16),
+                new THREE.MeshStandardMaterial({ color: 0x2a2a2a })
+            );
+            penHolder.position.set(-1.6, 0.81, -0.4);
+            scene.add(penHolder);
+
+            // Карандаши в держателе
+            for (let i = 0; i < 8; i++) {
+                const pencil = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.004, 0.004, 0.12, 6),
+                    new THREE.MeshStandardMaterial({
+                        color: i % 2 === 0 ? 0xffd700 : 0xc0c0c0
+                    })
+                );
+                const angle = (i / 8) * Math.PI * 2;
+                pencil.position.set(
+                    -1.6 + Math.cos(angle) * 0.03,
+                    0.88,
+                    -0.4 + Math.sin(angle) * 0.03
+                );
+                pencil.rotation.y = angle;
+                scene.add(pencil);
+            }
+        }
+
+        function createRustyCube() {
+            cubeGroup = new THREE.Group();
+
+            const faceMaterial = new THREE.MeshStandardMaterial({
+                color: 0x1a1a1a,
+                roughness: 0.7,
+                metalness: 0.3
+            });
+
+            const edgeMaterial = new THREE.MeshStandardMaterial({
+                color: 0x333333,
+                roughness: 0.5
+            });
+
+            // Создаём 6 граней куба
+            const faces = [
+                { pos: [0, 0, 0.03], rot: [0, 0, 0] },      // front
+                { pos: [0, 0, -0.03], rot: [0, Math.PI, 0] }, // back
+                { pos: [0.03, 0, 0], rot: [0, Math.PI / 2, 0] }, // right
+                { pos: [-0.03, 0, 0], rot: [0, -Math.PI / 2, 0] }, // left
+                { pos: [0, 0.03, 0], rot: [Math.PI / 2, 0, 0] }, // top
+                { pos: [0, -0.03, 0], rot: [-Math.PI / 2, 0, 0] } // bottom
+            ];
+
+            faces.forEach(face => {
+                const cubeFace = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.06, 0.06, 0.005),
+                    faceMaterial
+                );
+                cubeFace.position.set(...face.pos);
+                cubeFace.rotation.set(...face.rot);
+                cubeGroup.add(cubeFace);
+            });
+
+            // ИСПРАВЛЕНО: куб на столе
+            cubeGroup.position.set(1.2, 0.82, -0.8);
+            cubeGroup.userData = {
+                name: 'Rusty Lake Cube',
+                description: 'Загадочный куб из игр Rusty Lake 🎮'
+            };
+            scene.add(cubeGroup);
+            interactableObjects.push(cubeGroup);
+        }
+
+        function createCoffeeCup() {
+            const cupGroup = new THREE.Group();
+
+            // Чашка
+            const cupMaterial = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                roughness: 0.4
+            });
+
+            const cup = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.05, 0.04, 0.08, 16),
+                cupMaterial
+            );
+            cupGroup.add(cup);
+
+            // Кофе внутри
+            const coffee = new THREE.Mesh(
+                new THREE.CircleGeometry(0.045, 16),
+                new THREE.MeshStandardMaterial({ color: 0x4a3728 })
+            );
+            coffee.rotation.x = -Math.PI / 2;
+            coffee.position.y = 0.04;
+            cupGroup.add(coffee);
+
+            // Ручка
+            const handle = new THREE.Mesh(
+                new THREE.TorusGeometry(0.035, 0.008, 8, 16, Math.PI),
+                cupMaterial
+            );
+            handle.rotation.y = Math.PI / 2;
+            handle.position.set(0.05, 0, 0);
+            cupGroup.add(handle);
+
+            // ИСПРАВЛЕНО: чашка на столе
+            cupGroup.position.set(0.2, 0.81, -0.2);
+            cupGroup.userData = {
+                name: 'Чашка кофе',
+                description: 'Топливо для программирования '
+            };
+            scene.add(cupGroup);
+            interactableObjects.push(cup);
+
+            // Пар от кофе
+            for (let i = 0; i < 5; i++) {
+                const steam = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.015, 8, 8),
+                    new THREE.MeshBasicMaterial({
+                        color: 0xffffff,
+                        transparent: true,
+                        opacity: 0.3
+                    })
+                );
+                steam.position.set(
+                    (Math.random() - 0.5) * 0.03,
+                    0.06,
+                    (Math.random() - 0.5) * 0.03
+                );
+                steam.userData = {
+                    initialY: 0.06,
+                    offset: Math.random() * Math.PI * 2
+                };
+                cupGroup.add(steam);
+                steamParticles.push(steam);
+            }
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onMouseMove(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(interactableObjects);
+
+            if (intersects.length > 0) {
+                const object = intersects[0].object;
+                if (object.userData.name) {
+                    tooltip.innerHTML = `
+                        <strong>${object.userData.name}</strong><br>
+                        ${object.userData.description}
+                    `;
+                    tooltip.classList.add('visible');
+                    tooltip.style.left = event.clientX + 15 + 'px';
+                    tooltip.style.top = event.clientY - 10 + 'px';
+                    document.body.style.cursor = 'pointer';
+                }
+            } else {
+                tooltip.classList.remove('visible');
+                document.body.style.cursor = 'default';
+            }
+        }
+
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.016;
+
+            // Анимация пара от кофе
+            steamParticles.forEach((steam) => {
+                steam.position.y = steam.userData.initialY +
+                    Math.sin(time * 2 + steam.userData.offset) * 0.02 + 0.02;
+                steam.material.opacity = 0.3 - (steam.position.y - steam.userData.initialY) * 0.5;
+                if (steam.position.y > steam.userData.initialY + 0.05) {
+                    steam.position.y = steam.userData.initialY;
+                }
+            });
+
+            // Лёгкое покачивание куба Rusty Lake
+            if (cubeGroup) {
+                cubeGroup.rotation.y += 0.01;
+                cubeGroup.rotation.x = Math.sin(time * 0.7) * 0.1;
+            }
+
+            // Мерцание лампочки
+            if (bulb) {
+                bulb.material.emissiveIntensity = 1 + Math.sin(time * 3) * 0.1;
+            }
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        // Загрузка
+        document.addEventListener('DOMContentLoaded', () => {
+            const loading = document.getElementById('loading');
+            const loadingProgress = document.getElementById('loadingProgress');
+            let progress = 0;
+
+            const loadingInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(loadingInterval);
+                    setTimeout(() => {
+                        loading.classList.add('hidden');
+                    }, 500);
+                }
+                loadingProgress.style.width = progress + '%';
+            }, 200);
+
+            // Инициализация сцены после загрузки
+            init();
+        });
+    </script>
+</body>
+
+</html>
