@@ -29,7 +29,7 @@ function flyBird() {
 }
 
 function scheduleBird() {
-    const delay = Math.random() * 120000 + 300000;
+    const delay = Math.random() * 60000 + 240000;
     birdTimeout = setTimeout(() => {
         flyBird();
         scheduleBird();
@@ -107,7 +107,7 @@ function hideCube() {
 }
 
 function scheduleCube() {
-    const delay = Math.random() * 180000 + 420000;
+    const delay = Math.random() * 120000 + 360000;
     setTimeout(() => {
         showCube();
     }, delay);
