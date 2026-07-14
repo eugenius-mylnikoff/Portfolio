@@ -29,7 +29,7 @@ function flyBird() {
 }
 
 function scheduleBird() {
-    const delay = Math.random() * 60000 + 90000;
+    const delay = Math.random() * 120000 + 300000;
     birdTimeout = setTimeout(() => {
         flyBird();
         scheduleBird();
@@ -107,7 +107,7 @@ function hideCube() {
 }
 
 function scheduleCube() {
-    const delay = Math.random() * 60000 + 120000;
+    const delay = Math.random() * 180000 + 420000;
     setTimeout(() => {
         showCube();
     }, delay);
@@ -274,9 +274,7 @@ moviePosters.forEach(poster => {
 
 window.addEventListener('load', () => {
     scheduleBird();
-    setTimeout(() => {
-        showCube();
-    }, 5000);
+    scheduleCube();
 });
 
 const egeCards = document.querySelectorAll('.ege-card');
