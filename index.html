@@ -450,65 +450,78 @@
         </div>
     </section>
 
-    <section class="section entertainment-section" id="entertainment">
+    <section class="section achievements-section" id="achievements">
         <div class="container">
-            <h2 class="section-title">Развлечения</h2>
+            <h2 class="section-title">Достижения</h2>
             <div class="title-line"></div>
+            <p class="achievements-intro">Мое портфолио постоянно пополняется. На данный момент у меня есть:</p>
 
-            <div class="entertainment-block movies-block" data-aos="zoom-out">
-                <h3>🎬 Фильмы</h3>
-                <p>Свободное время я люблю посвящать просмотру фильмов. Очень нравятся хорроры и триллеры, люблю такое👻
-                    Но и комедии тоже смотрю, посмеяться я всегда люблю😁 Вот несколько моих самых любимых фильмов и
-                    сериалов:</p>
-                <div class="movies-grid">
-                    <div class="movie-poster"><img src="images/movies/1.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/2.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/3.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/4.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/5.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/6.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/7.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/8.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/9.jpg" alt="Фильм" class="zoomable-img"></div>
-                    <div class="movie-poster"><img src="images/movies/10.jpg" alt="Фильм" class="zoomable-img"></div>
+            <div class="achievements-list" data-aos="fade-left">
+                <div class="achievement-category">
+                    <h3>🎓 Сертификаты за обучение C++ в Университете Синергия</h3>
+                    <div class="diplomas-grid">
+                        <div class="diploma-item" onclick="openModal('synergy_cpp_1')">
+                            <img src="images/diplomas/synergy_cpp_1.jpg" alt="Сертификат" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="diploma-item" onclick="openModal('synergy_cpp_2')">
+                            <img src="images/diplomas/synergy_cpp_2.jpg" alt="Сертификат" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="diploma-item" onclick="openModal('synergy_cpp_3')">
+                            <img src="images/diplomas/synergy_cpp_3.jpg" alt="Сертификат" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="diploma-item" onclick="openModal('synergy_cpp_4')">
+                            <img src="images/diplomas/synergy_cpp_4.jpg" alt="Сертификат" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="entertainment-block games-block" data-aos="zoom-in">
-                <h3>🎮 Игры</h3>
-                <p>Я не назову себя заядлым геймером, но игры тоже занимают важное место в моей жизни. Интересно, что
-                    фильмы-боевики я не очень люблю, а вот игры-боевики - пожалуйста. Видимо, мне важен
-                    <strong>интерактив</strong>: возможность не просто наблюдать, а участвовать, влиять на происходящее⚡
-                </p>
-
-                <div class="games-showcase">
-                    <div class="game-item">
-                        <img src="images/games/rusty_lake.jpg" alt="Rusty Lake" class="game-poster zoomable-img">
-                        <p>Моя самая любимая линейка игр - <strong>Rusty Lake</strong>. Я обожаю всё, что создают эти
-                            разработчики. Их игры - это сюрреалистичные детективы с нестандартными загадками, которые
-                            кажутся невозможными для решения, но при этом невероятно затягивают🌟 В них есть та самая
-                            атмосфера загадочности и глубины, которую я ценю. Элементы хоррора добавляют особого шарма.
-                        </p>
+                <div class="achievement-category">
+                    <h3>🎮 Диплом за создание игры на Unity</h3>
+                    <div class="diplomas-grid single">
+                        <div class="diploma-item" onclick="openModal('unity_game')">
+                            <img src="images/diplomas/unity_game.jpg" alt="Диплом Unity" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="game-item">
-                        <img src="images/games/observation_duty.jpg" alt="Observation Duty"
-                            class="game-poster zoomable-img">
-                        <p>Также мне нравятся хорроры, но не обязательно «кричалки». Например, линейка <strong>I'm on
-                                Observation Duty</strong> - это игры про поиск аномалий. Они не пугают скримерами, но
-                            тренируют внимательность и создают жутковатую атмосферу😈 <strong>Phasmophobia</strong> и
-                            <strong>Lethal Company</strong> - отличные кооперативные хорроры, в которые весело играть с
-                            друзьями. Недавно друг познакомил меня с Lethal Company - мы с ним вместе играли, весело и
-                            круто.
-                        </p>
+                <div class="achievement-category">
+                    <h3>🐍 Сертификаты об окончании курсов Python в Яндекс Лицее</h3>
+                    <div class="diplomas-grid">
+                        <div class="diploma-item" onclick="openModal('yandex_python_1')">
+                            <img src="images/diplomas/yandex_python_1.jpg" alt="Сертификат" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="diploma-item" onclick="openModal('yandex_python_2')">
+                            <img src="images/diplomas/yandex_python_2.jpg" alt="Сертификат" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="diploma-item" onclick="openModal('yandex_python_3')">
+                            <img src="images/diplomas/yandex_python_3.jpg" alt="Сертификат" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="diploma-item" onclick="openModal('yandex_python_4')">
+                            <img src="images/diplomas/yandex_python_4.jpg" alt="Сертификат" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="game-item">
-                        <img src="images/games/atomic_heart.jpg" alt="Atomic Heart" class="game-poster zoomable-img">
-                        <p>А если хочется масштабного сюжета и атмосферы, я включаю <strong>Cyberpunk 2077</strong>,
-                            <strong>Atomic Heart</strong> или <strong>Resident Evil 4</strong>💥 В них мне нравится
-                            именно погружение в другой мир и возможность влиять на историю.
-                        </p>
+                <div class="achievement-category">
+                    <h3>🏆 Дипломы участника олимпиад</h3>
+                    <div class="diplomas-grid">
+                        <div class="diploma-item" onclick="openModal('olympiad_1')">
+                            <img src="images/diplomas/olympiad_1.jpg" alt="Диплом" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="diploma-item" onclick="openModal('olympiad_2')">
+                            <img src="images/diplomas/olympiad_2.jpg" alt="Диплом" class="zoomable-img">
+                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -584,74 +597,65 @@
         </div>
     </section>
 
-    <section class="section achievements-section" id="achievements">
+    <section class="section entertainment-section" id="entertainment">
         <div class="container">
-            <h2 class="section-title">Достижения</h2>
+            <h2 class="section-title">Развлечения</h2>
             <div class="title-line"></div>
-            <p class="achievements-intro">Мое портфолио постоянно пополняется. На данный момент у меня есть:</p>
 
-            <div class="achievements-list" data-aos="fade-left">
-                <div class="achievement-category">
-                    <h3>🎓 Сертификаты за обучение C++ в Университете Синергия</h3>
-                    <div class="diplomas-grid">
-                        <div class="diploma-item" onclick="openModal('synergy_cpp_1')">
-                            <img src="images/diplomas/synergy_cpp_1.jpg" alt="Сертификат" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <div class="diploma-item" onclick="openModal('synergy_cpp_2')">
-                            <img src="images/diplomas/synergy_cpp_2.jpg" alt="Сертификат" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <div class="diploma-item" onclick="openModal('synergy_cpp_3')">
-                            <img src="images/diplomas/synergy_cpp_3.jpg" alt="Сертификат" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <div class="diploma-item" onclick="openModal('synergy_cpp_4')">
-                            <img src="images/diplomas/synergy_cpp_4.jpg" alt="Сертификат" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                    </div>
+            <div class="entertainment-block movies-block" data-aos="zoom-out">
+                <h3>🎬 Фильмы</h3>
+                <p>Свободное время я люблю посвящать просмотру фильмов. Очень нравятся хорроры и триллеры, люблю такое👻
+                    Но и комедии тоже смотрю, посмеяться я всегда люблю😁 Вот несколько моих самых любимых фильмов и
+                    сериалов:</p>
+                <div class="movies-grid">
+                    <div class="movie-poster"><img src="images/movies/1.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/2.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/3.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/4.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/5.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/6.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/7.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/8.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/9.jpg" alt="Фильм" class="zoomable-img"></div>
+                    <div class="movie-poster"><img src="images/movies/10.jpg" alt="Фильм" class="zoomable-img"></div>
                 </div>
+            </div>
 
-                <div class="achievement-category">
-                    <h3>🎮 Диплом за создание игры на Unity</h3>
-                    <div class="diplomas-grid single">
-                        <div class="diploma-item" onclick="openModal('unity_game')">
-                            <img src="images/diplomas/unity_game.jpg" alt="Диплом Unity" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
+            <div class="entertainment-block games-block" data-aos="zoom-in">
+                <h3>🎮 Игры</h3>
+                <p>Я не назову себя заядлым геймером, но игры тоже занимают важное место в моей жизни. Интересно, что
+                    фильмы-боевики я не очень люблю, а вот игры-боевики - пожалуйста. Видимо, мне важен
+                    <strong>интерактив</strong>: возможность не просто наблюдать, а участвовать, влиять на происходящее⚡
+                </p>
+
+                <div class="games-showcase">
+                    <div class="game-item">
+                        <img src="images/games/rusty_lake.jpg" alt="Rusty Lake" class="game-poster zoomable-img">
+                        <p>Моя самая любимая линейка игр - <strong>Rusty Lake</strong>. Я обожаю всё, что создают эти
+                            разработчики. Их игры - это сюрреалистичные детективы с нестандартными загадками, которые
+                            кажутся невозможными для решения, но при этом невероятно затягивают🌟 В них есть та самая
+                            атмосфера загадочности и глубины, которую я ценю. Элементы хоррора добавляют особого шарма.
+                        </p>
                     </div>
-                </div>
 
-                <div class="achievement-category">
-                    <h3>🐍 Сертификаты об окончании курсов Python в Яндекс Лицее</h3>
-                    <div class="diplomas-grid">
-                        <div class="diploma-item" onclick="openModal('yandex_python_1')">
-                            <img src="images/diplomas/yandex_python_1.jpg" alt="Сертификат" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <div class="diploma-item" onclick="openModal('yandex_python_2')">
-                            <img src="images/diplomas/yandex_python_2.jpg" alt="Сертификат" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <div class="diploma-item" onclick="openModal('yandex_python_3')">
-                            <img src="images/diplomas/yandex_python_3.jpg" alt="Сертификат" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
+                    <div class="game-item">
+                        <img src="images/games/observation_duty.jpg" alt="Observation Duty"
+                            class="game-poster zoomable-img">
+                        <p>Также мне нравятся хорроры, но не обязательно «кричалки». Например, линейка <strong>I'm on
+                                Observation Duty</strong> - это игры про поиск аномалий. Они не пугают скримерами, но
+                            тренируют внимательность и создают жутковатую атмосферу😈 <strong>Phasmophobia</strong> и
+                            <strong>Lethal Company</strong> - отличные кооперативные хорроры, в которые весело играть с
+                            друзьями. Недавно друг познакомил меня с Lethal Company - мы с ним вместе играли, весело и
+                            круто.
+                        </p>
                     </div>
-                </div>
 
-                <div class="achievement-category">
-                    <h3>🏆 Дипломы участника олимпиад</h3>
-                    <div class="diplomas-grid">
-                        <div class="diploma-item" onclick="openModal('olympiad_1')">
-                            <img src="images/diplomas/olympiad_1.jpg" alt="Диплом" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <div class="diploma-item" onclick="openModal('olympiad_2')">
-                            <img src="images/diplomas/olympiad_2.jpg" alt="Диплом" class="zoomable-img">
-                            <div class="diploma-overlay"><i class="fas fa-search-plus"></i></div>
-                        </div>
+                    <div class="game-item">
+                        <img src="images/games/atomic_heart.jpg" alt="Atomic Heart" class="game-poster zoomable-img">
+                        <p>А если хочется масштабного сюжета и атмосферы, я включаю <strong>Cyberpunk 2077</strong>,
+                            <strong>Atomic Heart</strong> или <strong>Resident Evil 4</strong>💥 В них мне нравится
+                            именно погружение в другой мир и возможность влиять на историю.
+                        </p>
                     </div>
                 </div>
             </div>
